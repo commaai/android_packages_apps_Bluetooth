@@ -73,7 +73,7 @@ import java.util.HashMap;
 import java.util.List;
 import android.text.Html;
 import java.util.concurrent.atomic.AtomicLong;
-import com.android.emailcommon.provider.EmailContent.Message;
+// import com.android.emailcommon.provider.EmailContent.Message;
 
 @TargetApi(19)
 public class BluetoothMapContentEmail extends BluetoothMapContent {
@@ -1101,29 +1101,30 @@ public class BluetoothMapContentEmail extends BluetoothMapContent {
                 fi.mMsgType = FilterInfo.TYPE_EMAIL;
                 String where = setWhereFilter(folderElement, fi, ap);
 
-                if(!where.isEmpty()) {
-                    where += " AND "+ Message.FLAG_LOADED_SELECTION;
-                    where += " order by " +BluetoothMapEmailContract.ExtEmailMessageColumns
-                        .TIMESTAMP+" desc "+ limit;
-                    if (D) Log.d(TAG, "msgType: " + fi.mMsgType + " where: " + where);
-                    Uri contentUri = BluetoothMapEmailContract
-                            .buildEmailMessageUri(BluetoothMapEmailContract.EMAIL_AUTHORITY);
-                    emailCursor =
-                            mResolver.query(contentUri, BluetoothMapEmailContract
-                            .BT_EMAIL_MESSAGE_PROJECTION, where, null, null);
-                    Log.d(TAG, "emailUri " + contentUri.toString());
-                    if (emailCursor != null) {
-                        BluetoothMapMessageListingElement e = null;
-                        // store column index so we dont have to look them up anymore (optimization)
-                        fi.setEmailMessageColumns(emailCursor);
-                        Log.d(TAG, "Found " + emailCursor.getCount() + " email messages.");
-                        while (emailCursor.moveToNext()) {
-                            if(V) BluetoothMapUtils.printCursor(emailCursor);
-                            e = element(emailCursor, fi, ap);
-                            bmList.add(e);
-                        }
-                    }
-                }
+                // if(!where.isEmpty()) {
+                //     where += " AND "+ Message.FLAG_LOADED_SELECTION;
+                //     where += " order by " +BluetoothMapEmailContract.ExtEmailMessageColumns
+                //         .TIMESTAMP+" desc "+ limit;
+                //     if (D) Log.d(TAG, "msgType: " + fi.mMsgType + " where: " + where);
+                //     Uri contentUri = BluetoothMapEmailContract
+                //             .buildEmailMessageUri(BluetoothMapEmailContract.EMAIL_AUTHORITY);
+                //     emailCursor =
+                //             mResolver.query(contentUri, BluetoothMapEmailContract
+                //             .BT_EMAIL_MESSAGE_PROJECTION, where, null, null);
+                //     Log.d(TAG, "emailUri " + contentUri.toString());
+                //     if (emailCursor != null) {
+                //         BluetoothMapMessageListingElement e = null;
+                //         // store column index so we dont have to look them up anymore (optimization)
+                //         fi.setEmailMessageColumns(emailCursor);
+                //         Log.d(TAG, "Found " + emailCursor.getCount() + " email messages.");
+                //         while (emailCursor.moveToNext()) {
+                //             if(V) BluetoothMapUtils.printCursor(emailCursor);
+                //             e = element(emailCursor, fi, ap);
+                //             bmList.add(e);
+                //         }
+                //     }
+                // }
+                throw new RuntimeException("no");
             }
 
             /* Enable this if post sorting and segmenting needed */
